@@ -1,0 +1,30 @@
+:root{--leather:#1A0F0A;--panel:#231510;--brass:#C9A45C;--white:#F4EFE2;--muted:#B9AE9B;--red:#C3141F}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--leather);color:var(--white);font:18px/1.7 Georgia,"Times New Roman",serif;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--brass);text-decoration:none;border-bottom:1px solid rgba(201,164,92,.4)}
+a:hover,a:focus-visible{border-bottom-color:var(--brass)}
+a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+header,main,footer{width:100%;max-width:720px;margin:0 auto;padding-left:24px;padding-right:24px}
+header{display:flex;justify-content:space-between;align-items:baseline;padding-top:32px;padding-bottom:20px;border-bottom:1px solid rgba(201,164,92,.35)}
+.brand{font-size:22px;letter-spacing:.32em;text-transform:uppercase;color:var(--white);border:0}
+nav a{margin-left:22px;font:14px/1 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:0}
+nav a:hover,nav a[aria-current]{color:var(--brass)}
+main{flex:1;padding-top:64px;padding-bottom:64px}
+.eyebrow{font:13px/1 system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);margin:0 0 20px}
+h1{font-weight:400;font-size:clamp(34px,7vw,52px);line-height:1.15;margin:0 0 20px}
+h2{font-weight:400;font-size:26px;margin:52px 0 8px;padding-top:24px;border-top:1px solid rgba(201,164,92,.35)}
+h3{font:600 14px/1.4 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:28px 0 4px}
+.lead{font-size:21px;color:var(--muted);margin:0 0 40px}
+.rule{width:64px;height:1px;background:var(--brass);border:0;margin:40px 0}
+.card{background:var(--panel);border:1px solid rgba(201,164,92,.45);padding:28px 30px;margin:36px 0}
+.card .eyebrow{margin-bottom:10px}
+.card p{margin:0}
+.card .big{font-size:28px}
+.muted{color:var(--muted);font-size:15px}
+.langs{font:14px/1 system-ui,sans-serif;letter-spacing:.08em;color:var(--muted);margin:0 0 36px}
+ul{padding-left:1.2em}
+footer{padding-top:24px;padding-bottom:36px;border-top:1px solid rgba(201,164,92,.35);font:14px/1.6 system-ui,sans-serif;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+footer a{color:var(--muted);border:0}
+footer a:hover{color:var(--brass)}
+@media(max-width:520px){body{font-size:17px}nav a{margin-left:14px}header{flex-direction:column;gap:14px}}
