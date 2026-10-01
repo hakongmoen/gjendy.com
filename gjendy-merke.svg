@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4D2"/><stop offset="0.4" stop-color="#E8C77F"/><stop offset="0.75" stop-color="#C29A50"/><stop offset="1" stop-color="#8A6A2E"/></linearGradient>
+<radialGradient id="sq" cx="50%" cy="22%" r="85%"><stop offset="0" stop-color="#2E2F29"/><stop offset="0.5" stop-color="#121310"/><stop offset="1" stop-color="#070806"/></radialGradient>
+<linearGradient id="cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4D2" stop-opacity="0.16"/><stop offset="1" stop-color="#FFF4D2" stop-opacity="0"/></linearGradient>
+<linearGradient id="bev" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.10"/><stop offset="0.5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.25"/></linearGradient>
+<clipPath id="cl"><rect x="3" y="3" width="94" height="94" rx="22"/></clipPath></defs>
+<rect x="3" y="3" width="94" height="94" rx="22" fill="url(#sq)"/>
+<g clip-path="url(#cl)"><polygon points="38,3 62,3 84,97 16,97" fill="url(#cone)"/><rect x="3" y="3" width="94" height="94" fill="url(#bev)"/></g>
+<rect x="3" y="3" width="94" height="94" rx="22" fill="none" stroke="url(#g)" stroke-width="2.4"/>
+<rect x="9.5" y="9.5" width="81" height="81" rx="16.5" fill="none" stroke="#C9A45C" stroke-width="0.6" opacity="0.55"/>
+<text x="50" y="71" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700" font-size="60" fill="url(#g)">G</text></svg>

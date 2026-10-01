@@ -2,7 +2,9 @@
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/barlow-condensed-400.woff2) format('woff2')}
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/barlow-condensed-500.woff2) format('woff2')}
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400 500;font-display:swap;src:url(fonts/cormorant-garamond-italic.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-600.woff2) format('woff2')}
 @font-face{font-family:'Playfair Display';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/playfair-display-italic-400.woff2) format('woff2')}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:700;font-display:swap;src:url(fonts/playfair-display-italic-700.woff2) format('woff2')}
 
 :root{--ink:#0A0B09;--ink2:#121310;--text:#F2EEE3;--soft:#E7D8B4;--muted:#9C9688;--brass:#C9A45C;--brass-hi:#F6E6B4}
 *,*::before,*::after{box-sizing:border-box}
@@ -18,12 +20,16 @@ img,svg{max-width:100%}
 .wordmark{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;line-height:1.1;padding:0 4px;background:linear-gradient(180deg,#F6E6B4 0%,#D4B06A 38%,#A57E3A 70%,#6E5222 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 1px rgba(0,0,0,.7))}
 .topbar{position:relative;background:linear-gradient(180deg,var(--ink2),var(--ink));box-shadow:inset 0 -1px 0 rgba(201,164,92,.55)}
 .topbar-in{max-width:1180px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
-.topbar .wordmark{font-size:32px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{display:block;flex:none}
+.brand span{font-weight:600;font-size:18px;letter-spacing:.42em;background:linear-gradient(180deg,#FFF4D2 0%,#E8C77F 40%,#C29A50 75%,#8A6A2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.appicon{margin-bottom:10px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
+.appicon svg{display:block;width:104px;height:104px}
 .nav{display:flex;gap:32px;font-size:14px;letter-spacing:.32em;text-transform:uppercase}
 .nav a[aria-current]{color:var(--brass-hi)}
 .botbar{background:var(--ink);box-shadow:inset 0 1px 0 rgba(201,164,92,.55);margin-top:auto}
 .botbar-in{max-width:1180px;margin:0 auto;padding:40px 32px 56px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
-.botbar .wordmark{font-size:28px;filter:none}
 .botbar .nav{gap:28px;font-size:13px}
 .botbar small{font-size:14px;color:#8C8574}
 
@@ -40,7 +46,7 @@ img,svg{max-width:100%}
 .tag{margin:18px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:var(--soft)}
 .sub{margin:0;font-size:19px;color:var(--muted);max-width:560px;line-height:1.5}
 .coming{margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:10px}
-.coming div{font-size:14px;letter-spacing:.35em;color:var(--brass)}
+.coming>div:not(.appicon){font-size:14px;letter-spacing:.35em;color:var(--brass)}
 
 /* Animations (all off under prefers-reduced-motion) */
 @keyframes sheen{0%{background-position:150% 0}55%{background-position:-50% 0}100%{background-position:-50% 0}}
@@ -118,7 +124,8 @@ img,svg{max-width:100%}
 
 @media(max-width:640px){
   .topbar-in{padding:16px 20px}
-  .topbar .wordmark{font-size:28px}
+  .brand span{font-size:16px;letter-spacing:.36em}
+  .brand svg{width:32px;height:32px}
   .nav{gap:18px;font-size:12px;letter-spacing:.26em}
   .botbar-in{padding:32px 20px 44px}
   .botbar .nav{gap:18px;font-size:12px;letter-spacing:.26em}
