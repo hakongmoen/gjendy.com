@@ -6,7 +6,7 @@
 @font-face{font-family:'Playfair Display';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/playfair-display-italic-400.woff2) format('woff2')}
 @font-face{font-family:'Playfair Display';font-style:italic;font-weight:700;font-display:swap;src:url(fonts/playfair-display-italic-700.woff2) format('woff2')}
 
-:root{--ink:#0A0B09;--ink2:#121310;--text:#F2EEE3;--soft:#E7D8B4;--muted:#9C9688;--brass:#C9A45C;--brass-hi:#F6E6B4}
+:root{color-scheme:dark;--ink:#0A0B09;--ink2:#121310;--text:#F2EEE3;--soft:#E7D8B4;--muted:#9C9688;--brass:#C9A45C;--brass-hi:#F6E6B4}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--ink);color:var(--text);font-family:'Barlow Condensed',system-ui,sans-serif;font-size:19px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
@@ -17,7 +17,6 @@ main{flex:1}
 img,svg{max-width:100%}
 
 /* Brass wordmark and rules */
-.wordmark{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;line-height:1.1;padding:0 4px;background:linear-gradient(180deg,#F6E6B4 0%,#D4B06A 38%,#A57E3A 70%,#6E5222 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 1px rgba(0,0,0,.7))}
 .topbar{position:relative;background:linear-gradient(180deg,var(--ink2),var(--ink));box-shadow:inset 0 -1px 0 rgba(201,164,92,.55)}
 .topbar-in{max-width:1180px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:center;gap:12px 24px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
@@ -27,6 +26,7 @@ img,svg{max-width:100%}
 .appicon{margin-bottom:10px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
 .appicon svg{display:block;width:104px;height:104px;border-radius:22.4%;overflow:hidden}
 .nav{display:flex;gap:32px;font-size:14px;letter-spacing:.32em;text-transform:uppercase}
+.nav a{display:inline-block;padding:14px 6px;margin:-14px -6px}
 .nav a[aria-current]{color:var(--brass-hi)}
 .botbar{background:var(--ink);box-shadow:inset 0 1px 0 rgba(201,164,92,.55);margin-top:auto}
 .botbar-in{max-width:1180px;margin:0 auto;padding:40px 32px 56px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
@@ -53,8 +53,12 @@ img,svg{max-width:100%}
 @keyframes breathe{0%,100%{opacity:.75}50%{opacity:1}}
 @keyframes dust{0%{transform:translate(0,0);opacity:0}15%{opacity:.7}100%{transform:translate(30px,-220px);opacity:0}}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-@keyframes cue{0%,12%{left:22%;top:60%}30%{left:62.5%;top:43.5%}100%{left:62.5%;top:43.5%}}
-@keyframes red{0%,28%{left:65.5%;top:41%;opacity:1;transform:scale(1)}52%{left:95.4%;top:4.2%;opacity:1;transform:scale(.95)}58%,100%{left:95.4%;top:4.2%;opacity:0;transform:scale(.5)}}
+/* The balls move with transform (not left/top), so the animation runs on the compositor.
+   Percentages are of the ball's own size (2.6% of the table width, square); the table is 2:1.
+   cue: 22%,60% -> 62.5%,43.5%   =  +40.5/2.6 = 1557.7%,  -16.5*0.5/2.6 = -317.3%
+   red: 65.5%,41% -> 95.4%,4.2%  =  +29.9/2.6 = 1150%,    -36.8*0.5/2.6 = -707.7% */
+@keyframes cue{0%,12%{transform:translate(0,0)}30%,100%{transform:translate(1557.7%,-317.3%)}}
+@keyframes red{0%,28%{opacity:1;transform:translate(0,0) scale(1)}52%{opacity:1;transform:translate(1150%,-707.7%) scale(.95)}58%,100%{opacity:0;transform:translate(1150%,-707.7%) scale(.5)}}
 .sheen{background-size:250% 100%!important;animation:sheen 7s ease-in-out infinite}
 .breathe{animation:breathe 6s ease-in-out infinite}
 .mote{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--brass-hi);filter:blur(.5px);opacity:0;animation:dust 9s linear infinite}
@@ -62,7 +66,7 @@ img,svg{max-width:100%}
 .d3{animation-delay:.3s}.d5{animation-delay:.5s}.d7{animation-delay:.7s}
 .card{transition:transform .5s ease,box-shadow .5s ease}
 .card:hover{transform:translateY(-6px)}
-.cueball,.redball{position:absolute;left:22%;top:60%;width:2.6%;aspect-ratio:1;border-radius:50%;box-shadow:0 6px 10px rgba(0,0,0,.45)}
+.cueball,.redball{position:absolute;left:22%;top:60%;width:2.6%;aspect-ratio:1;border-radius:50%;box-shadow:0 6px 10px rgba(0,0,0,.45);will-change:transform}
 .cueball{background:radial-gradient(circle at 35% 30%,#fff,#E9E4D6 45%,#9E988A);animation:cue 8s cubic-bezier(.2,.6,.3,1) infinite}
 .redball{left:65.5%;top:41%;background:radial-gradient(circle at 35% 30%,#F08A80,#C62E24 35%,#6E120C);animation:red 8s cubic-bezier(.2,.6,.3,1) infinite}
 @media (prefers-reduced-motion:reduce){.sheen,.breathe,.mote,.rise,.cueball,.redball,.card{animation:none!important;transition:none!important}.card:hover{transform:none}}
@@ -121,6 +125,21 @@ img,svg{max-width:100%}
 .panel{position:relative;padding:30px 32px;margin:34px 0;border-radius:4px;background:linear-gradient(180deg,#171814 0%,#0E0F0D 100%);box-shadow:inset 0 0 0 1px rgba(201,164,92,.45),0 18px 44px rgba(0,0,0,.5)}
 .panel p{margin:0}
 .panel .big{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:32px;line-height:1.2;color:var(--text)}
+
+/* Snooker page */
+.page.wide{max-width:1100px}
+.pitch{text-align:center;padding:24px 0 8px}
+.pitch h1{font-size:clamp(40px,7vw,76px);margin-bottom:18px}
+.pitch .lead{max-width:640px;margin:0 auto 12px}
+.pitch .when{font-size:14px;letter-spacing:.35em;color:var(--brass);text-transform:uppercase;margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:28px;list-style:none;margin:48px 0 0;padding:0}
+.facts li{flex:1 1 220px;padding:22px 0;border-top:1px solid rgba(201,164,92,.35)}
+.facts b{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.15;color:var(--text);margin-bottom:6px}
+.facts span{font-size:18px;color:var(--muted)}
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:24px;margin:28px 0 0;padding:0;list-style:none}
+.shot{margin:0}
+.shot-frame{display:flex;align-items:center;justify-content:center;aspect-ratio:2868/1320;border-radius:14px;background:linear-gradient(180deg,#171814 0%,#0E0F0D 100%);box-shadow:inset 0 0 0 1px rgba(201,164,92,.45),0 18px 44px rgba(0,0,0,.5);color:var(--muted);font-size:15px;letter-spacing:.3em;text-transform:uppercase}
+.shot figcaption{margin-top:10px;font-size:17px;color:var(--muted)}
 
 @media(max-width:640px){
   .topbar-in{padding:16px 20px}
